@@ -9,15 +9,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --color-primary: crimson;   /* #DC143C — accents, buttons, highlights, links */
-  --color-dark:  #0a0e17;      /* dark grey — header, footer, hero, dark text */
-  --color-light:  #0a0e17;     /* near-white grey — alt section backgrounds */
-  --color-muted: #6e6e6e;     /* mid-grey — body text, secondary text */
-  --color-white: #ffffff;     /* white — main backgrounds, text on dark */
+  --color-primary: crimson;
+  --color-dark: #0a0e17;      /* was #0e1b2c — now near-black, cooler with crimson */
+  --color-dark-2: #1c0510;    /* new — deep crimson-black for gradients */
 }
+
 .portfolio-thumb{
-  background: var(--color-dark);   /* was blue gradient */
-  color: var(--color-white);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-dark-2));
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 
@@ -117,7 +115,7 @@ img{max-width:100%;display:block;}
   align-items:center;
   justify-content:center;
   text-align:center;
-  background: var(--color-dark);   /* flat dark grey, no gradient */
+  background: radial-gradient(circle at 50% 20%, #2a0812, #0a0e17 70%);
   color:#fff;
   padding-top:70px;
 }
