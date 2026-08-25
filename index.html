@@ -9,12 +9,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --color-primary: crimson;
-  --color-dark: #0a0e17;      /* was #0e1b2c — now near-black, cooler with crimson */
-  --color-dark-2: #1c0510;    /* new — deep crimson-black for gradients */
+  --color-primary: crimson;   /* #DC143C — accents, buttons, highlights, links */
+  --color-dark: #2b2b2b;      /* dark grey — header, footer, hero, dark text */
+  --color-light: #f2f2f2;     /* near-white grey — alt section backgrounds */
+  --color-muted: #6e6e6e;     /* mid-grey — body text, secondary text */
+  --color-white: #ffffff;     /* white — main backgrounds, text on dark */
 }
 .portfolio-thumb{
-  background: linear-gradient(135deg, var(--color-primary), var(--color-dark-2));
+  background: var(--color-dark);   /* was blue gradient */
+  color: var(--color-white);
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 
@@ -113,7 +116,7 @@ img{max-width:100%;display:block;}
   align-items:center;
   justify-content:center;
   text-align:center;
-  background: radial-gradient(circle at 50% 20%, #2a0812, #0a0e17 70%);
+  background: var(--color-dark);   /* flat dark grey, no gradient */
   color:#fff;
   padding-top:70px;
 }
@@ -235,7 +238,7 @@ img{max-width:100%;display:block;}
   left:-7px;top:4px;
   width:12px;height:12px;
   border-radius:50%;
-  background:var(--color-primary);
+  background: var(--color-primary); /* crimson dot */
 }
 .resume-date{
   font-family:var(--font-mono);
@@ -329,7 +332,7 @@ img{max-width:100%;display:block;}
 .service-icon{
   font-family:var(--font-mono);
   font-size:1.8rem;
-  color:var(--color-primary);
+  color: var(--color-primary);     /* crimson numbers */
   font-weight:700;
   margin-bottom:1rem;
 }
