@@ -37,7 +37,15 @@ body{
 a{text-decoration:none;color:inherit;}
 ul{list-style:none;}
 img{max-width:100%;display:block;}
-
+.img-placeholder{
+  aspect-ratio:1/1;
+  border-radius:12px;
+  border:2px solid crimson;
+  background-image: url('PASTE-YOUR-PHOTO-LINK-OR-FILENAME-HERE.jpg');
+  background-size: cover;
+  background-position: center top;
+}
+  
 .btn{
   display:inline-block;
   padding:0.9rem 2rem;
@@ -63,13 +71,13 @@ img{max-width:100%;display:block;}
   top:0;left:0;right:0;
   z-index:1000;
   background:rgba(14,27,44,0.95);
-  backdrop-filter:blur(6px);
+  backdrop-filter:blur(9px);
 }
 .header-inner{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  height:70px;
+  height:50px;
 }
 .logo{
   font-size:1.4rem;
@@ -413,7 +421,7 @@ img{max-width:100%;display:block;}
 <!-- ===== Header / Nav ===== -->
 <header class="header" id="header">
   <div class="container header-inner">
-    <a href="#hero" class="logo">Your<span>Name</span></a>
+    <a href="#hero" class="logo">Joseph<span>Kung'u</span></a>
     <nav class="navbar" id="navbar">
       <ul>
         <li><a href="#hero" class="nav-link active">Home</a></li>
@@ -435,11 +443,11 @@ img{max-width:100%;display:block;}
 <section id="hero" class="hero">
   <div class="container hero-inner">
     <p class="hero-eyebrow">Hello, I'm</p>
-    <h1>Your Name</h1>
+    <h1>MUNGAI JOSEPH KUNG'U </h1>
     <p class="hero-role">I'm a <span class="typed" id="typed"></span></p>
     <div class="hero-socials">
-      <a href="#" aria-label="LinkedIn">in</a>
-      <a href="#" aria-label="GitHub">gh</a>
+      <a href="#" aria-label="Instagram">in</a>
+      <a href="#" aria-label="Github">gh</a>
       <a href="#" aria-label="Twitter">tw</a>
     </div>
     <a href="#contact" class="btn btn-primary">Get In Touch</a>
