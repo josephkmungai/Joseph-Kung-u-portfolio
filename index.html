@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Name | Portfolio</title>
+<meta name="description" content="Personal portfolio">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --color-primary:#2f58cd;
+  --color-dark:#0e1b2c;
+  --color-light:#f5f7fb;
+  --color-muted:#6b7684;
+  --color-white:#ffffff;
+  --font-main:'Poppins', sans-serif;
+  --font-mono:'Roboto Mono', monospace;
+  --transition:0.3s ease;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  font-family:var(--font-main);
+  color:var(--color-dark);
+  line-height:1.6;
+  background:var(--color-white);
+}
+
+.container{
+  width:90%;
+  max-width:1200px;
+  margin:0 auto;
+}
+
+a{text-decoration:none;color:inherit;}
+ul{list-style:none;}
+img{max-width:100%;display:block;}
+
+.btn{
+  display:inline-block;
+  padding:0.9rem 2rem;
+  border-radius:50px;
+  font-weight:600;
+  transition:var(--transition);
+  border:2px solid transparent;
+  cursor:pointer;
+}
+.btn-primary{
+  background:var(--color-primary);
+  color:#fff;
+}
+.btn-primary:hover{
+  background:transparent;
+  border-color:var(--color-primary);
+  color:var(--color-primary);
+}
+
+/* ===== Header ===== */
+.header{
+  position:fixed;
+  top:0;left:0;right:0;
+  z-index:1000;
+  background:rgba(14,27,44,0.95);
+  backdrop-filter:blur(6px);
+}
+.header-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  height:70px;
+}
+.logo{
+  font-size:1.4rem;
+  font-weight:700;
+  color:#fff;
+}
+.logo span{color:var(--color-primary);}
+.navbar ul{display:flex;gap:2rem;}
+.nav-link{
+  color:#cfd6e4;
+  font-weight:500;
+  font-size:0.95rem;
+  padding:0.4rem 0;
+  position:relative;
+  transition:var(--transition);
+}
+.nav-link::after{
+  content:'';
+  position:absolute;
+  bottom:0;left:0;
+  width:0;height:2px;
+  background:var(--color-primary);
+  transition:var(--transition);
+}
+.nav-link:hover,.nav-link.active{color:#fff;}
+.nav-link:hover::after,.nav-link.active::after{width:100%;}
+
+.nav-toggle{
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  background:none;
+  border:none;
+  cursor:pointer;
+}
+.nav-toggle span{
+  width:26px;height:2px;background:#fff;
+}
+
+/* ===== Hero ===== */
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  background:linear-gradient(135deg,var(--color-dark),#16243b);
+  color:#fff;
+  padding-top:70px;
+}
+.hero-eyebrow{
+  color:var(--color-primary);
+  font-family:var(--font-mono);
+  letter-spacing:2px;
+  text-transform:uppercase;
+  font-size:0.9rem;
+  margin-bottom:0.5rem;
+}
+.hero h1{
+  font-size:3.5rem;
+  font-weight:700;
+  margin-bottom:0.8rem;
+}
+.hero-role{
+  font-size:1.4rem;
+  color:#b7c0d1;
+  margin-bottom:1.5rem;
+}
+.typed{color:var(--color-primary);font-weight:600;}
+.hero-socials{
+  display:flex;
+  justify-content:center;
+  gap:1rem;
+  margin-bottom:2rem;
+}
+.hero-socials a{
+  width:42px;height:42px;
+  border:1px solid #3a4a63;
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;
+  transition:var(--transition);
+  font-size:0.85rem;
+}
+.hero-socials a:hover{background:var(--color-primary);border-color:var(--color-primary);}
+
+/* ===== Sections ===== */
+.section{padding:6rem 0;}
+.section.alt{background:var(--color-light);}
+.section-title{
+  text-align:center;
+  font-size:2.2rem;
+  font-weight:700;
+  margin-bottom:3rem;
+  position:relative;
+}
+.section-title::after{
+  content:'';
+  display:block;
+  width:60px;height:3px;
+  background:var(--color-primary);
+  margin:0.8rem auto 0;
+}
+
+/* ===== About ===== */
+.about-grid{
+  display:grid;
+  grid-template-columns:1fr 1.5fr;
+  gap:3rem;
+  align-items:center;
+  margin-bottom:4rem;
+}
+.img-placeholder{
+  aspect-ratio:1/1;
+  background:var(--color-light);
+  border:2px dashed #c9d2e0;
+  border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--color-muted);
+  font-weight:600;
+}
+.about-content h3{font-size:1.5rem;margin-bottom:1rem;}
+.about-content p{color:var(--color-muted);margin-bottom:1.2rem;}
+.about-details li{
+  padding:0.4rem 0;
+  border-bottom:1px solid #eee;
+  font-size:0.95rem;
+}
+.about-details strong{color:var(--color-dark);}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:2rem;
+  text-align:center;
+}
+.stat-num{
+  font-size:2.5rem;
+  font-weight:700;
+  color:var(--color-primary);
+  display:block;
+}
+.stat p{color:var(--color-muted);font-size:0.9rem;margin-top:0.3rem;}
+
+/* ===== Resume ===== */
+.resume-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:3rem;
+}
+.resume-col h3{
+  font-size:1.3rem;
+  margin-bottom:1.5rem;
+  padding-bottom:0.5rem;
+  border-bottom:2px solid var(--color-primary);
+}
+.resume-item{
+  border-left:2px solid #dde3ee;
+  padding-left:1.2rem;
+  margin-bottom:2rem;
+  position:relative;
+}
+.resume-item::before{
+  content:'';
+  position:absolute;
+  left:-7px;top:4px;
+  width:12px;height:12px;
+  border-radius:50%;
+  background:var(--color-primary);
+}
+.resume-date{
+  font-family:var(--font-mono);
+  font-size:0.8rem;
+  color:var(--color-primary);
+  background:#e8edfb;
+  padding:0.2rem 0.7rem;
+  border-radius:20px;
+  display:inline-block;
+  margin-bottom:0.5rem;
+}
+.resume-item h4{font-size:1.05rem;margin-bottom:0.2rem;}
+.resume-org{color:var(--color-muted);font-size:0.9rem;font-style:italic;margin-bottom:0.4rem;}
+.resume-item p:last-child{color:var(--color-muted);font-size:0.9rem;}
+
+/* ===== Skills ===== */
+.skills-list{max-width:750px;margin:0 auto;}
+.skill{margin-bottom:1.6rem;}
+.skill-head{
+  display:flex;justify-content:space-between;
+  font-weight:600;margin-bottom:0.5rem;
+}
+.skill-bar{
+  height:8px;background:#e5e9f2;border-radius:10px;overflow:hidden;
+}
+.skill-fill{
+  height:100%;width:0;background:var(--color-primary);
+  border-radius:10px;
+  transition:width 1.2s ease;
+}
+
+/* ===== Portfolio ===== */
+.filters{
+  display:flex;
+  justify-content:center;
+  gap:1rem;
+  margin-bottom:2.5rem;
+  flex-wrap:wrap;
+}
+.filter-btn{
+  background:none;border:1px solid #d8dfeb;
+  padding:0.5rem 1.3rem;
+  border-radius:30px;
+  cursor:pointer;
+  font-weight:500;
+  transition:var(--transition);
+}
+.filter-btn.active,.filter-btn:hover{
+  background:var(--color-primary);
+  color:#fff;
+  border-color:var(--color-primary);
+}
+.portfolio-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:2rem;
+}
+.portfolio-item{
+  background:#fff;
+  border-radius:10px;
+  overflow:hidden;
+  box-shadow:0 4px 20px rgba(0,0,0,0.06);
+  transition:var(--transition);
+}
+.portfolio-item:hover{transform:translateY(-6px);}
+.portfolio-thumb{
+  height:180px;
+  background:linear-gradient(135deg,var(--color-primary),#5b7fe0);
+  color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:600;
+}
+.portfolio-item h4{padding:1rem 1.2rem 0.3rem;font-size:1.05rem;}
+.portfolio-item p{padding:0 1.2rem 1.2rem;color:var(--color-muted);font-size:0.9rem;}
+.portfolio-item.hidden{display:none;}
+
+/* ===== Services ===== */
+.services-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:2rem;
+}
+.service-card{
+  padding:2rem 1.5rem;
+  border-radius:10px;
+  background:#fff;
+  box-shadow:0 4px 20px rgba(0,0,0,0.06);
+  transition:var(--transition);
+}
+.service-card:hover{transform:translateY(-6px);}
+.service-icon{
+  font-family:var(--font-mono);
+  font-size:1.8rem;
+  color:var(--color-primary);
+  font-weight:700;
+  margin-bottom:1rem;
+}
+.service-card h4{margin-bottom:0.6rem;font-size:1.1rem;}
+.service-card p{color:var(--color-muted);font-size:0.9rem;}
+
+/* ===== Contact ===== */
+.contact-grid{
+  display:grid;
+  grid-template-columns:1fr 2fr;
+  gap:3rem;
+}
+.contact-info p{margin-bottom:1rem;}
+.contact-form input,
+.contact-form textarea{
+  width:100%;
+  padding:0.9rem 1rem;
+  border:1px solid #d8dfeb;
+  border-radius:8px;
+  margin-bottom:1rem;
+  font-family:inherit;
+  font-size:0.95rem;
+}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.form-status{font-size:0.9rem;color:var(--color-primary);min-height:1.2rem;}
+
+/* ===== Footer ===== */
+.footer{
+  background:var(--color-dark);
+  color:#b7c0d1;
+  text-align:center;
+  padding:2rem 0;
+  font-size:0.9rem;
+}
+
+/* ===== Back to top ===== */
+.back-to-top{
+  position:fixed;
+  bottom:2rem;right:2rem;
+  width:45px;height:45px;
+  background:var(--color-primary);
+  color:#fff;
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;visibility:hidden;
+  transition:var(--transition);
+  z-index:999;
+}
+.back-to-top.show{opacity:1;visibility:visible;}
+
+/* ===== Responsive ===== */
+@media(max-width:900px){
+  .about-grid,.resume-grid,.contact-grid{grid-template-columns:1fr;}
+  .stats{grid-template-columns:repeat(2,1fr);}
+  .portfolio-grid{grid-template-columns:repeat(2,1fr);}
+  .services-grid{grid-template-columns:repeat(2,1fr);}
+  .navbar{
+    position:fixed;
+    top:70px;right:0;
+    width:250px;height:calc(100vh - 70px);
+    background:var(--color-dark);
+    transform:translateX(100%);
+    transition:var(--transition);
+  }
+  .navbar.open{transform:translateX(0);}
+  .navbar ul{flex-direction:column;padding:2rem;gap:1.5rem;}
+  .nav-toggle{display:flex;}
+  .hero h1{font-size:2.4rem;}
+}
+@media(max-width:500px){
+  .portfolio-grid,.services-grid{grid-template-columns:1fr;}
+  .form-row{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== Header / Nav ===== -->
+<header class="header" id="header">
+  <div class="container header-inner">
+    <a href="#hero" class="logo">Your<span>Name</span></a>
+    <nav class="navbar" id="navbar">
+      <ul>
+        <li><a href="#hero" class="nav-link active">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#resume" class="nav-link">Resume</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+        <li><a href="#services" class="nav-link">Services</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ===== Hero ===== -->
+<section id="hero" class="hero">
+  <div class="container hero-inner">
+    <p class="hero-eyebrow">Hello, I'm</p>
+    <h1>Your Name</h1>
+    <p class="hero-role">I'm a <span class="typed" id="typed"></span></p>
+    <div class="hero-socials">
+      <a href="#" aria-label="LinkedIn">in</a>
+      <a href="#" aria-label="GitHub">gh</a>
+      <a href="#" aria-label="Twitter">tw</a>
+    </div>
+    <a href="#contact" class="btn btn-primary">Get In Touch</a>
+  </div>
+</section>
+
+<main>
+
+<!-- ===== About ===== -->
+<section id="about" class="section">
+  <div class="container">
+    <h2 class="section-title">About Me</h2>
+    <div class="about-grid">
+      <div class="about-img">
+        <div class="img-placeholder">Photo</div>
+      </div>
+      <div class="about-content">
+        <h3>Network & Cybersecurity Specialist</h3>
+        <p>Write a couple of sentences here about who you are, what you do, and what drives you professionally. Keep it short and confident.</p>
+        <ul class="about-details">
+          <li><strong>Birthday:</strong> 01 Jan 2000</li>
+          <li><strong>Website:</strong> www.example.com</li>
+          <li><strong>Phone:</strong> +254 700 000000</li>
+          <li><strong>City:</strong> Nairobi, Kenya</li>
+          <li><strong>Degree:</strong> Diploma, Network Systems Administration</li>
+          <li><strong>Email:</strong> you@example.com</li>
+          <li><strong>Freelance:</strong> Available</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><span class="stat-num" data-target="30">0</span><p>Projects Done</p></div>
+      <div class="stat"><span class="stat-num" data-target="12">0</span><p>Certifications</p></div>
+      <div class="stat"><span class="stat-num" data-target="500">0</span><p>Hours of Labs</p></div>
+      <div class="stat"><span class="stat-num" data-target="8">0</span><p>Happy Clients</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Resume ===== -->
+<section id="resume" class="section alt">
+  <div class="container">
+    <h2 class="section-title">Resume</h2>
+    <div class="resume-grid">
+      <div class="resume-col">
+        <h3>Education</h3>
+        <div class="resume-item">
+          <span class="resume-date">2023 - Present</span>
+          <h4>Diploma in Computer Network Systems Administration</h4>
+          <p class="resume-org">Your Institute Name</p>
+          <p>Brief description of coursework or focus area.</p>
+        </div>
+        <div class="resume-item">
+          <span class="resume-date">2021 - 2023</span>
+          <h4>Certificate / High School</h4>
+          <p class="resume-org">Institution Name</p>
+          <p>Brief description.</p>
+        </div>
+      </div>
+      <div class="resume-col">
+        <h3>Professional Experience</h3>
+        <div class="resume-item">
+          <span class="resume-date">2024 - Present</span>
+          <h4>Network Support Technician</h4>
+          <p class="resume-org">Company / Own Venture Name</p>
+          <p>What you did, tools used, results achieved.</p>
+        </div>
+        <div class="resume-item">
+          <span class="resume-date">2023 - 2024</span>
+          <h4>IT Intern</h4>
+          <p class="resume-org">Company Name</p>
+          <p>What you did, tools used, results achieved.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Skills ===== -->
+<section id="skills" class="section">
+  <div class="container">
+    <h2 class="section-title">Skills</h2>
+    <div class="skills-list">
+      <div class="skill">
+        <div class="skill-head"><span>Network Administration</span><span>90%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="90"></div></div>
+      </div>
+      <div class="skill">
+        <div class="skill-head"><span>Cybersecurity Fundamentals</span><span>85%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
+      </div>
+      <div class="skill">
+        <div class="skill-head"><span>Fortinet / Firewall Config</span><span>80%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
+      </div>
+      <div class="skill">
+        <div class="skill-head"><span>Linux Administration</span><span>75%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="75"></div></div>
+      </div>
+      <div class="skill">
+        <div class="skill-head"><span>Scripting (Bash / Python)</span><span>70%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="70"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Portfolio ===== -->
+<section id="portfolio" class="section alt">
+  <div class="container">
+    <h2 class="section-title">Portfolio</h2>
+    <div class="filters" id="filters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="network">Network Labs</button>
+      <button class="filter-btn" data-filter="security">Security</button>
+      <button class="filter-btn" data-filter="web">Web</button>
+    </div>
+    <div class="portfolio-grid" id="portfolioGrid">
+      <div class="portfolio-item" data-cat="network">
+        <div class="portfolio-thumb">Project 1</div>
+        <h4>Enterprise Network Lab Build</h4>
+        <p>Short one-line description.</p>
+      </div>
+      <div class="portfolio-item" data-cat="security">
+        <div class="portfolio-thumb">Project 2</div>
+        <h4>Firewall Hardening Case Study</h4>
+        <p>Short one-line description.</p>
+      </div>
+      <div class="portfolio-item" data-cat="web">
+        <div class="portfolio-thumb">Project 3</div>
+        <h4>Client Portal Website</h4>
+        <p>Short one-line description.</p>
+      </div>
+      <div class="portfolio-item" data-cat="network">
+        <div class="portfolio-thumb">Project 4</div>
+        <h4>VLAN Segmentation Project</h4>
+        <p>Short one-line description.</p>
+      </div>
+      <div class="portfolio-item" data-cat="security">
+        <div class="portfolio-thumb">Project 5</div>
+        <h4>Vulnerability Assessment Report</h4>
+        <p>Short one-line description.</p>
+      </div>
+      <div class="portfolio-item" data-cat="web">
+        <div class="portfolio-thumb">Project 6</div>
+        <h4>Portfolio / Landing Page</h4>
+        <p>Short one-line description.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Services ===== -->
+<section id="services" class="section">
+  <div class="container">
+    <h2 class="section-title">Services</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">01</div>
+        <h4>Network Setup & Support</h4>
+        <p>Describe the service you offer, who it's for, and the outcome.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">02</div>
+        <h4>Security Audits</h4>
+        <p>Describe the service you offer, who it's for, and the outcome.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">03</div>
+        <h4>Firewall Configuration</h4>
+        <p>Describe the service you offer, who it's for, and the outcome.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">04</div>
+        <h4>IT Consulting</h4>
+        <p>Describe the service you offer, who it's for, and the outcome.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Contact ===== -->
+<section id="contact" class="section alt">
+  <div class="container">
+    <h2 class="section-title">Contact</h2>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <p><strong>Location:</strong> Nairobi, Kenya</p>
+        <p><strong>Email:</strong> you@example.com</p>
+        <p><strong>Phone:</strong> +254 700 000000</p>
+      </div>
+      <form class="contact-form" id="contactForm">
+        <div class="form-row">
+          <input type="text" name="name" placeholder="Your Name" required>
+          <input type="email" name="email" placeholder="Your Email" required>
+        </div>
+        <input type="text" name="subject" placeholder="Subject" required>
+        <textarea name="message" rows="6" placeholder="Message" required></textarea>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+        <p class="form-status" id="formStatus"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <p>&copy; <span id="year"></span> Your Name. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<a href="#hero" class="back-to-top" id="backToTop">&uarr;</a>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const navToggle = document.getElementById('navToggle');
+  const navbar = document.getElementById('navbar');
+  navToggle.addEventListener('click', function () {
+    navbar.classList.toggle('open');
+  });
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => navbar.classList.remove('open'));
+  });
+
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+  window.addEventListener('scroll', function () {
+    let current = '';
+    sections.forEach(section => {
+      const top = section.offsetTop - 90;
+      if (window.scrollY >= top) current = section.getAttribute('id');
+    });
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) link.classList.add('active');
+    });
+  });
+
+  const roles = ['Network Administrator', 'Cybersecurity Enthusiast', 'IT Support Specialist'];
+  const typedEl = document.getElementById('typed');
+  let roleIndex = 0, charIndex = 0, deleting = false;
+
+  function typeLoop() {
+    const currentRole = roles[roleIndex];
+    if (!deleting) {
+      typedEl.textContent = currentRole.substring(0, charIndex + 1);
+      charIndex++;
+      if (charIndex === currentRole.length) {
+        deleting = true;
+        setTimeout(typeLoop, 1200);
+        return;
+      }
+    } else {
+      typedEl.textContent = currentRole.substring(0, charIndex - 1);
+      charIndex--;
+      if (charIndex === 0) {
+        deleting = false;
+        roleIndex = (roleIndex + 1) % roles.length;
+      }
+    }
+    setTimeout(typeLoop, deleting ? 40 : 80);
+  }
+  typeLoop();
+
+  const stats = document.querySelectorAll('.stat-num');
+  const statObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCount(entry.target);
+        statObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  stats.forEach(stat => statObserver.observe(stat));
+
+  function animateCount(el) {
+    const target = parseInt(el.getAttribute('data-target'), 10);
+    let count = 0;
+    const step = Math.max(1, Math.ceil(target / 60));
+    const interval = setInterval(() => {
+      count += step;
+      if (count >= target) {
+        count = target;
+        clearInterval(interval);
+      }
+      el.textContent = count;
+    }, 25);
+  }
+
+  const skillFills = document.querySelectorAll('.skill-fill');
+  const skillObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.width = entry.target.getAttribute('data-width') + '%';
+        skillObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  skillFills.forEach(fill => skillObserver.observe(fill));
+
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const portfolioItems = document.querySelectorAll('.portfolio-item');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      const filter = this.getAttribute('data-filter');
+      portfolioItems.forEach(item => {
+        const match = filter === 'all' || item.getAttribute('data-cat') === filter;
+        item.classList.toggle('hidden', !match);
+      });
+    });
+  });
+
+  const backToTop = document.getElementById('backToTop');
+  window.addEventListener('scroll', function () {
+    backToTop.classList.toggle('show', window.scrollY > 400);
+  });
+
+  const form = document.getElementById('contactForm');
+  const status = document.getElementById('formStatus');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    status.textContent = 'Sending...';
+    setTimeout(() => {
+      status.textContent = 'Thank you! Your message has been sent.';
+      form.reset();
+    }, 800);
+  });
+
+});
+</script>
+</body>
+</html>
