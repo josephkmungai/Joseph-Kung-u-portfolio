@@ -4,15 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Chat with CyberJay</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--font:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;--acD:#00ff9c;--acL:#0a7d4f;--h:min(82vh,640px);
---bg:#0b0f14;--card:#121820;--line:#1f2a37;--tx:#e6edf3;--mut:#8b98a7;--ac:var(--acD);--onac:#04110b;--bub:#1b2531}
+:root{--font:"Sora",system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;--acD:#e11d48;--acL:#c8102e;--onD:#fff;--onL:#fff;--h:min(82vh,640px);
+--bg:#0a0e17;--card:#121a28;--line:#212b3c;--tx:#e8ecf4;--mut:#93a0b6;--ac:var(--acD);--onac:var(--onD);--bub:#1a2335;--acT:color-mix(in srgb,var(--ac) 68%,#fff)}
 @supports (height:1dvh){:root{--h:min(82dvh,640px)}}
-:root[data-theme="light"]{--bg:#eef2f6;--card:#fff;--line:#d8dee4;--tx:#1f2328;--mut:#59636e;--ac:var(--acL);--onac:#fff;--bub:#e9eef3}
-:root[data-accent="blue"]{--acD:#4da3ff;--acL:#0b63d1}
-:root[data-accent="purple"]{--acD:#b18cff;--acL:#6b3fd4}
-:root[data-accent="orange"]{--acD:#ffa24d;--acL:#b85a00}
-:root[data-accent="pink"]{--acD:#ff7ab8;--acL:#c4247a}
+:root[data-theme="light"]{--bg:#f4f6fa;--card:#fff;--line:#dce2ec;--tx:#141824;--mut:#566176;--ac:var(--acL);--onac:var(--onL);--bub:#eceff5;--acT:var(--ac)}
+:root[data-accent="green"]{--acD:#00d884;--acL:#0a7d4f;--onD:#04110b}
+:root[data-accent="blue"]{--acD:#4da3ff;--acL:#0b63d1;--onD:#04101f}
+:root[data-accent="purple"]{--acD:#b18cff;--acL:#6b3fd4;--onD:#120a2a}
+:root[data-accent="orange"]{--acD:#ffa24d;--acL:#b85a00;--onD:#2a1500}
+:root[data-accent="pink"]{--acD:#ff7ab8;--acL:#c4247a;--onD:#2a0716}
 :root[data-font="serif"]{--font:Georgia,"Times New Roman",Times,serif}
 :root[data-font="mono"]{--font:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
 :root[data-font="round"]{--font:"Trebuchet MS","Segoe UI",Verdana,sans-serif}
@@ -20,9 +24,9 @@
 html{font-size:13px;-webkit-text-size-adjust:100%}
 body{margin:0;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;background:var(--bg);color:var(--tx);font-family:var(--font);line-height:1.45}
 button,input{font-family:inherit;font-size:inherit}
-main{flex:1;display:flex;align-items:center;justify-content:center;padding:16px 14px;padding-top:max(16px,env(safe-area-inset-top));padding-left:max(14px,env(safe-area-inset-left));padding-right:max(14px,env(safe-area-inset-right))}
+main{flex:1;display:flex;align-items:center;justify-content:center;padding:8px 14px 16px;padding-left:max(14px,env(safe-area-inset-left));padding-right:max(14px,env(safe-area-inset-right))}
 footer{text-align:center;color:var(--mut);font-size:.85rem;padding:14px 14px calc(14px + env(safe-area-inset-bottom));border-top:1px solid var(--line)}
-.card{width:100%;max-width:440px;background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.card{width:100%;max-width:440px;background:var(--card);border:1px solid var(--line);border-radius:24px;overflow:hidden}
 .mono{font-family:ui-monospace,Menlo,Consolas,monospace}
 .gear{width:34px;height:34px;flex:none;border:1px solid var(--line);border-radius:50%;background:transparent;color:var(--tx);cursor:pointer;font-weight:600;font-size:.85rem}
 .gear:hover{border-color:var(--ac);color:var(--ac)}
@@ -42,7 +46,7 @@ footer{text-align:center;color:var(--mut);font-size:.85rem;padding:14px 14px cal
 #stage{display:none;width:100%;max-width:960px;grid-template-columns:minmax(0,230px) minmax(0,440px) minmax(0,230px);gap:16px;justify-content:center;align-items:stretch}
 #room{display:flex;height:var(--h);min-height:420px;flex-direction:column;max-width:none}
 .side{padding:16px 14px;display:flex;flex-direction:column;gap:8px;max-height:var(--h);overflow-y:auto}
-.side h2{margin:0;font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ac);font-family:ui-monospace,Menlo,monospace;font-weight:500}
+.side h2{margin:0;font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;color:var(--acT);font-family:ui-monospace,Menlo,monospace;font-weight:500}
 .side .sub{margin:0 0 4px;font-size:.85rem;color:var(--mut)}
 #svcList,#soonList{display:flex;flex-direction:column;gap:8px}
 .item{width:100%;text-align:left;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:transparent;color:var(--tx);cursor:pointer}
@@ -97,8 +101,10 @@ footer{text-align:center;color:var(--mut);font-size:.85rem;padding:14px 14px cal
 .opts button{padding:8px 13px;border:1px solid var(--line);border-radius:10px;background:transparent;color:var(--tx);cursor:pointer}
 .opts button.on{border-color:var(--ac);color:var(--ac);box-shadow:inset 0 0 0 1px var(--ac)}
 .opts .sw{width:34px;height:34px;padding:0;border-radius:50%}
-.sw[data-accent="green"]{background:#00d884}.sw[data-accent="blue"]{background:#3b8eea}.sw[data-accent="purple"]{background:#8b5cf6}.sw[data-accent="orange"]{background:#f59e0b}.sw[data-accent="pink"]{background:#ec4899}
+.sw[data-accent="crimson"]{background:#dc143c}.sw[data-accent="green"]{background:#00d884}.sw[data-accent="blue"]{background:#3b8eea}.sw[data-accent="purple"]{background:#8b5cf6}.sw[data-accent="orange"]{background:#f59e0b}.sw[data-accent="pink"]{background:#ec4899}
 .opts .sw.on{box-shadow:0 0 0 2px var(--card),0 0 0 4px var(--ac)}
+#cyes{background:var(--ac);color:var(--onac);border-color:var(--ac);font-weight:600}
+.sheet p{margin:0 0 16px;color:var(--mut)}
 </style>
 </head>
 <body>
@@ -152,6 +158,15 @@ footer{text-align:center;color:var(--mut);font-size:.85rem;padding:14px 14px cal
 
 <footer>&copy; <span id="yr">2026</span> CyberJay. All rights reserved.</footer>
 
+<!-- Confirm: change name -->
+<div class="ovl" id="confirm" hidden>
+  <div class="card sheet" role="alertdialog" aria-label="Change name">
+    <div class="hd"><b>Change name?</b></div>
+    <p>Your current chat will be cleared from this device. Do you want to continue?</p>
+    <div class="opts"><button id="cyes">Yes, change name</button><button id="cno">Cancel</button></div>
+  </div>
+</div>
+
 <!-- Appearance panel -->
 <div class="ovl" id="settings" hidden>
   <div class="card sheet" role="dialog" aria-label="Appearance">
@@ -160,7 +175,7 @@ footer{text-align:center;color:var(--mut);font-size:.85rem;padding:14px 14px cal
     <div class="opts"><button data-mode="auto">Auto</button><button data-mode="light">Light</button><button data-mode="dark">Dark</button></div>
     <h3>Chat color</h3>
     <div class="opts">
-      <button class="sw" data-accent="green" aria-label="Green"></button><button class="sw" data-accent="blue" aria-label="Blue"></button><button class="sw" data-accent="purple" aria-label="Purple"></button><button class="sw" data-accent="orange" aria-label="Orange"></button><button class="sw" data-accent="pink" aria-label="Pink"></button>
+      <button class="sw" data-accent="crimson" aria-label="Crimson"></button><button class="sw" data-accent="green" aria-label="Green"></button><button class="sw" data-accent="blue" aria-label="Blue"></button><button class="sw" data-accent="purple" aria-label="Purple"></button><button class="sw" data-accent="orange" aria-label="Orange"></button><button class="sw" data-accent="pink" aria-label="Pink"></button>
     </div>
     <h3>Font style</h3>
     <div class="opts">
@@ -175,7 +190,7 @@ footer{text-align:center;color:var(--mut);font-size:.85rem;padding:14px 14px cal
 <script>
 /* ================= SETTINGS ================= */
 const API = null;        // null = preview (fake replies). Live: '' (same domain) or 'https://your-app.vercel.app'
-const MAIN_SITE = 'index.html';   // your main site address, e.g. 'https://yoursite.com'
+const MAIN_SITE = 'index.html';   // main site: 'index.html' if it sits next to this file, else the full address
 
 /* Left panel (services) and right panel (coming soon). Edit freely. */
 const SERVICES = [
@@ -203,7 +218,7 @@ const del = k => { try { store && store.removeItem(k); } catch (e) {} };
 const rand = () => Array.from(crypto.getRandomValues(new Uint8Array(6))).map(b => b.toString(16).padStart(2, '0')).join('');
 
 /* ---------- Appearance (saved per device) ---------- */
-let prefs = { mode: 'auto', accent: 'green', font: 'system' };
+let prefs = { mode: 'auto', accent: 'crimson', font: 'system' };
 try { Object.assign(prefs, JSON.parse(get('cj_prefs') || '{}')); } catch (e) {}
 const mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: light)') : null;
 function applyPrefs() {
@@ -227,7 +242,7 @@ $('settings').addEventListener('click', e => {
 });
 $('sclose').onclick = () => { $('settings').hidden = true; };
 document.querySelectorAll('[data-open]').forEach(b => b.onclick = () => { $('settings').hidden = false; });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') $('settings').hidden = true; });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { $('settings').hidden = true; $('confirm').hidden = true; } });
 
 /* ---------- Chat state ---------- */
 let name = get('cj_name'), sid = get('cj_sid'), pollTimer = null;
@@ -283,6 +298,8 @@ function showRoom() {
   $('chips').style.display = hist.some(h => h.who === 'me') ? 'none' : 'flex';
   if (!demo) { poll(); pollTimer = setInterval(poll, 4000); }
   $('text').focus();
+  const q = new URLSearchParams(location.search).get('ask');   /* from the main site's "Ask about this" links */
+  if (q) ask(q);
 }
 function showWelcome(prefill) {
   clearInterval(pollTimer); pollTimer = null;
@@ -300,7 +317,12 @@ function start() {
 $('wgo').onclick = start;
 $('wname').addEventListener('keydown', e => { if (e.key === 'Enter') start(); });
 $('wname').addEventListener('input', () => $('werr').textContent = '');
-$('change').onclick = () => {
+/* Change name: ask for confirmation first */
+$('change').onclick = () => { $('confirm').hidden = false; };
+$('cno').onclick = () => { $('confirm').hidden = true; };
+$('confirm').addEventListener('click', e => { if (e.target === $('confirm')) $('confirm').hidden = true; });
+$('cyes').onclick = () => {
+  $('confirm').hidden = true;
   const old = name;
   del('cj_name'); del('cj_sid'); del('cj_seen'); del('cj_log');
   name = null; sid = null; seen = new Set(); hist = [];
@@ -338,7 +360,5 @@ async function poll() {
 /* Known device goes straight to the chat; new device sees the username page */
 if (name && sid) showRoom(); else showWelcome('');
 </script>
-
-
 </body>
 </html>
